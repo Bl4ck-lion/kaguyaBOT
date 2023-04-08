@@ -333,10 +333,10 @@ ${monospace(text)}
 *${prefix}menfess stop* = Untuk mengakhiri obrolan`
                 if (menArg && isOnWa) {
                     if (menArg == sender.split("@")[0]) return message.reply("Jangan jadikan diri sendiri sebagai target crush!")
-                    if (menUser?.crushJid !== menArg + "@c.us") return message.reply("Anda sudah punya crush, ngotak dong!")
+                    if (menUser.crushJid && menUser.crushJid !== menArg + "@c.us") return message.reply("Anda sudah punya crush, ngotak dong!")
                     if (menArg == client.info.me._serialized) return message.reply("Jangan bot juga yang dijadikan crush")
                     if (fs.existsSync(`${Menfess.dirpath}/${menArg}@c.us.json`)) Menfess.deleteUser(`${menArg}@c.us`)
-                    if (checkArg.userJid || checkArg.crushJid) return message.reply("Crush mu sedang di crushin orang lain:/")
+                    if ((checkArg.userJid && checkArg.crushJid) && checkArg.userJid !== sender && checkArg.crushJid !== sender) return message.reply("Crush mu sedang di crushin orang lain:/")
                     const resdata = await Menfess.updateUser({ userJid: sender, crushJid: contactJid._serialized, startChat: false })
                     await client.sendMessage(resdata.crushJid, `${textMen}`)
                     await message.reply("Sukses !\nBerhasil mengirim pesan menfess ke crushmu, tunngu sampai dia membalasnya di bot ini :)")
@@ -357,8 +357,8 @@ ${monospace(text)}
                         await client.sendMessage(db.userJid, "Owner telah mereset database menfess kalian")
                         db.crushJid ? await client.sendMessage(db.userJid, "Owner telah mereset database menfess kalian") : false
                         Menfess.deleteUser(db.userJid)
-                        await message.reply("Sukses !")
                     }
+                    await message.reply("Sukses !")
                 }
             }
             break
