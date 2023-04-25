@@ -139,10 +139,10 @@ module.exports = msgHndlr = async (client, message) => {
                 logMsg(command, pushname)
                 if (hasMedia && (type == "image" || type == "video")) {
                     let media = await message.downloadMedia()
-                    return message.reply(media, from, { sendMediaAsSticker: true, stickerName: "Sticker", stickerAuthor: "@kaguyaShinomiya" })
+                    return message.reply(media, from, { sendMediaAsSticker: true, stickerName: "Sticker", stickerAuthor: "@RamaAgung" })
                 } else if (quotedMsg && (quotedMsg.type == "image" || quotedMsg.type == "video")) {
                     let media = await (await message.getQuotedMessage()).downloadMedia()
-                    return message.reply(media, from, { sendMediaAsSticker: true, stickerName: "Sticker", stickerAuthor: "@kaguyaShinomiya" })
+                    return message.reply(media, from, { sendMediaAsSticker: true, stickerName: "Sticker", stickerAuthor: "@RamaAgung" })
                 } else {
                     return message.reply("Silahkan reply/kirim pesan media dengan caption *#sticker*")
                 }
@@ -155,11 +155,11 @@ module.exports = msgHndlr = async (client, message) => {
                 if (q && !hasQuotedMsg) {
                     let qcdata = await qc(client, message)
                     let qcmedia = new MessageMedia("image/jpeg", qcdata, "quotedC.webp")
-                    return message.reply(qcmedia, from, { sendMediaAsSticker: true, stickerName: "Sticker", stickerAuthor: "@kaguyaShinomiya" })
+                    return message.reply(qcmedia, from, { sendMediaAsSticker: true, stickerName: "Sticker", stickerAuthor: "@RamaAgung" })
                 } else if (hasQuotedMsg) {
                     let qcdata = await qc(client, await message.getQuotedMessage())
                     let qcmedia = new MessageMedia("image/jpeg", qcdata, "quotedC.webp")
-                    return message.reply(qcmedia, from, { sendMediaAsSticker: true, stickerName: "Sticker", stickerAuthor: "@kaguyaShinomiya" })
+                    return message.reply(qcmedia, from, { sendMediaAsSticker: true, stickerName: "Sticker", stickerAuthor: "@RamaAgung" })
                 }
             }
             break
@@ -207,9 +207,9 @@ module.exports = msgHndlr = async (client, message) => {
                 axios.get(`${apiKaguya}/api/instagramdl?url=${args[0]}`)
                 .then(async ({ data }) => {
                     let igdata = data.result
-                    let caption = "*_Instagram Downloader by @kaguyaShinomiya_*"
+                    let caption = "*_Instagram Downloader by @n7p_*"
                     for (let i = 0; i < igdata.dlink.length; i++) {
-                        let media = await MessageMedia.fromUrl(igdata.dlink[i], { unsafeMime: true, filename: "igdl@kaguyaShinomiya" })
+                        let media = await MessageMedia.fromUrl(igdata.dlink[i], { unsafeMime: true, filename: "igdl@ramnvx_" })
                         await message.reply(media, from, { caption, sendMediaAsDocument: (Number((await getFilesize(media.data).split(" MB")[0])) >= 16.00) })
                     }
                 })

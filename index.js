@@ -25,7 +25,7 @@ const client = new Client({
             '--force-dark-mode'
         ],
         ignoreHTTPSErrors: true,
-        executablePath: 'C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe'
+        executablePath: 'C:\\Users\\Acernya RAMA\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe'
         //'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
     }
 })
